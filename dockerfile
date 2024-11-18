@@ -1,11 +1,11 @@
 ### Use Nvidia CUDA base image
-FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu22.04 as base
+FROM nvidia/cuda:12.6.2-cudnn-runtime-ubuntu24.04 as base
 
 ### Prevents prompts from packages asking for user input during installation
 ENV DEBIAN_FRONTEND=noninteractive \
-### Prefer binary wheels over source distributions for faster pip installations
+    ### Prefer binary wheels over source distributions for faster pip installations
     PIP_PREFER_BINARY=1 \
-### Ensures output from python is printed immediately to the terminal without buffering
+    ### Ensures output from python is printed immediately to the terminal without buffering
     PYTHONUNBUFFERED=1 
 
 ### Install Python, git and other necessary tools
@@ -14,7 +14,7 @@ RUN apt-get update && apt-get install -y \
     python3.10 \
     wget \
     git \
-### Install libs used for exporting mp4, for nodes like animatediff. can be removed if not required.
+    ### Install libs used for exporting mp4, for nodes like animatediff. can be removed if not required.
     ffmpeg \
     libpng-dev \
     libjpeg-dev \
@@ -35,7 +35,7 @@ WORKDIR /comfyui
 # RUN git checkout 723847f6b3d5da21e5d712bc0139fb7197ba60a4
 
 ### Install ComfyUI dependencies
-RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 \
+RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu124 \
     && pip3 install --no-cache-dir xformers==0.0.21 \
     && pip3 install -r requirements.txt 
 
@@ -48,9 +48,9 @@ RUN python3 custom-file-installer.py
 ### Check for custom nodes 'requirements.txt' files and then run install
 RUN for dir in /comfyui/custom_nodes/*/; do \
     if [ -f "$dir/requirements.txt" ]; then \
-        pip3 install --no-cache-dir -r "$dir/requirements.txt"; \
+    pip3 install --no-cache-dir -r "$dir/requirements.txt"; \
     fi; \
-done
+    done
 
 ### Go back to the root
 WORKDIR /
