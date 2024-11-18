@@ -85,9 +85,8 @@ def handler(job):
             if key in node_output:
                 for data in node_output[key]:
                     if data.get("type") == 'output':
-                        base = comftroller.GENERATION_OUTPUT_PATH
                         path = data["subfolder"] + data["filename"]
-                        output_files.append(f"{base}/{path}")
+                        output_files.append(path)
 
     # if you dont know what this does... you shouldnt be here.
     utils.log(f"#files generated: {len(output_files)}")
@@ -98,16 +97,17 @@ def handler(job):
 
     # return an error if for some reason the files cant be found. 
     # should never happen... but just in case <3
-    for outfile in output_files:
-        if not os.path.exists(outfile):
-            return utils.error(f"couldn't locate output file: {outfile} #sadface")
+    # for outfile in output_files:
+    #     if not os.path.exists(outfile):
+    #         return utils.error(f"couldn't locate output file: {outfile} #sadface")
 
     # log progress update to runpod so it knows we might take a moment to upload to aws
     update_progress({"saving-image-data": True})
 
+    base = comftroller.GENERATION_OUTPUT_PATH
     # attempt to upload the generated files to aws, 
     # send_to_aws returns (True, [file urls, ...]) or (False, [file paths, ...])
-    aws_uploaded, bucket_urls = uploader.send_to_aws(output_files, 'generations', bucket_creds)
+    aws_uploaded, bucket_urls = uploader.send_to_aws(base, output_files, 'generations', bucket_creds)
 
     # define return object 
     job_result = {}
