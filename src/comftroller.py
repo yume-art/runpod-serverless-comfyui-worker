@@ -30,7 +30,7 @@ HOSTPORTNAME = "127.0.0.1:8188"
 GENERATION_OUTPUT_PATH = "/comfyui/output"
 
 # Time to wait between API check attempts in milliseconds
-API_AVAILABLE_INTERVAL_MS = 100
+API_AVAILABLE_INTERVAL_MS = 1000
 
 # Maximum number of API check attempts
 # should be available within 1 second!
