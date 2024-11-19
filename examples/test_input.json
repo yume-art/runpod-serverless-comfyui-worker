@@ -78,7 +78,7 @@
       },
       "7": {
         "inputs": {
-          "filename_prefix": "test/img",
+          "filename_prefix": "img",
           "images": ["4", 0]
         },
         "class_type": "SaveImage",
