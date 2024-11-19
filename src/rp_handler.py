@@ -85,7 +85,11 @@ def handler(job):
             if key in node_output:
                 for data in node_output[key]:
                     if data.get("type") == 'output':
-                        path = data["subfolder"] + data["filename"]
+                        data["subfolder"] + data["filename"]
+                        if(data['subfolder'] is None):
+                            path = f"{data['filename']}"
+                        else:    
+                            path = f"{data['subfolder']}/{data['filename']}"
                         output_files.append(path)
 
     # if you dont know what this does... you shouldnt be here.
