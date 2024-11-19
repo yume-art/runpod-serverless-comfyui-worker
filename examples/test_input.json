@@ -360,24 +360,6 @@
           "title": "Mask List to Masks"
         }
       },
-      "maskPreview-model-0": {
-        "inputs": {
-          "mask": ["gaussianBlurMask-model-0", 0]
-        },
-        "class_type": "MaskPreview+",
-        "_meta": {
-          "title": "Mask Preview"
-        }
-      },
-      "maskPreview-background-1": {
-        "inputs": {
-          "mask": ["gaussianBlurMask-background-1", 0]
-        },
-        "class_type": "MaskPreview+",
-        "_meta": {
-          "title": "Mask Preview"
-        }
-      },
       "clipTextEncode-model-0": {
         "inputs": {
           "text": "masterpiece, ((realistic)), 4k, 8k,man posing for photograph",
@@ -653,33 +635,6 @@
           "title": "Gaussian Blur Mask"
         }
       },
-      "maskPreview-model-0-head": {
-        "inputs": {
-          "mask": ["gaussianBlurMask-model-0-head", 0]
-        },
-        "class_type": "MaskPreview+",
-        "_meta": {
-          "title": "Mask Preview"
-        }
-      },
-      "maskPreview-model-0-outfitTop": {
-        "inputs": {
-          "mask": ["gaussianBlurMask-model-0-outfitTop", 0]
-        },
-        "class_type": "MaskPreview+",
-        "_meta": {
-          "title": "Mask Preview"
-        }
-      },
-      "maskPreview-model-0-outfitBottom": {
-        "inputs": {
-          "mask": ["gaussianBlurMask-model-0-outfitBottom", 0]
-        },
-        "class_type": "MaskPreview+",
-        "_meta": {
-          "title": "Mask Preview"
-        }
-      },
       "loadModelFaceImage-0": {
         "inputs": {
           "url_or_path": "https://storage.googleapis.com/yume-artifacts/outputs/cm3offgio0007deky3mgq0x2u/face_profile_00003_.png"
@@ -879,15 +834,6 @@
           "title": "VAE Decode"
         }
       },
-      "ksamplerImagePreview": {
-        "inputs": {
-          "images": ["finalKSamplerImage", 0]
-        },
-        "class_type": "PreviewImage",
-        "_meta": {
-          "title": "Preview Image"
-        }
-      },
       "clipTextEncode-negative": {
         "inputs": {
           "text": "nsfw, lowres, bad anatomy, bad hands, text, error, missing fingers, extra digit, fewer digits, cropped, worst quality, low quality, normal quality, jpeg artifacts, signature, watermark, username, blurry, artist name,cgi,toon,animation,pixar",
@@ -929,15 +875,6 @@
         "class_type": "ReActorFaceSwapOpt",
         "_meta": {
           "title": "ReActor 🌌 Fast Face Swap [OPTIONS]"
-        }
-      },
-      "finalImagePreview": {
-        "inputs": {
-          "images": ["faceSwap-0", 0]
-        },
-        "class_type": "PreviewImage",
-        "_meta": {
-          "title": "Preview Image"
         }
       },
       "saveFinalImage": {

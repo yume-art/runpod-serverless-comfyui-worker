@@ -35,6 +35,7 @@ WORKDIR /comfyui
 # RUN git checkout 723847f6b3d5da21e5d712bc0139fb7197ba60a4
 
 ### Install ComfyUI dependencies
+
 RUN pip3 install --no-cache-dir torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121 \
     && pip3 install --no-cache-dir xformers==0.0.21 \
     && pip3 install -r requirements.txt 
@@ -62,6 +63,8 @@ ADD src/ examples/test_input.json ./
 
 ### Install each of the defined requirements then make start.sh file executable
 RUN pip3 install --no-cache-dir -r requirements.txt && chmod +x /start.sh
+
+RUN pip install torch==2.5.0 torchvision==0.20.0 torchaudio==2.5.0 --index-url https://download.pytorch.org/whl/cu124
 
 # Clean up after pip installs
 RUN pip3 cache purge
