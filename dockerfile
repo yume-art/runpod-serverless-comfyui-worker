@@ -34,12 +34,14 @@ WORKDIR /comfyui
 ### set comfyui to specific commit id (useful if they update and introduce bugs...)
 # RUN git checkout 723847f6b3d5da21e5d712bc0139fb7197ba60a4
 
+### Add /custom folder - this includes the installer script and any manually added custom nodes/models
+ADD custom/ volume/extra_model_paths.yaml ./
+
+RUN pip3 install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
+
 ### Install ComfyUI dependencies
 RUN pip3 install --no-cache-dir xformers==0.0.21 \
     && pip3 install -r requirements.txt 
-
-### Add /custom folder - this includes the installer script and any manually added custom nodes/models
-ADD custom/ volume/extra_model_paths.yaml ./
 
 ### install each of the custom models/nodes etc within custom-files.json
 RUN python3 custom-file-installer.py 
@@ -51,15 +53,11 @@ RUN for dir in /comfyui/custom_nodes/*/; do \
     fi; \
     done
 
-RUN pip3 show torch
-
 ### Go back to the root
 WORKDIR /
 
 ### Add the src directory and example input
 ADD src/ examples/test_input.json ./
-
-RUN pip3 install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
 
 ### Install each of the defined requirements then make start.sh file executable
 RUN pip3 install --no-cache-dir -r requirements.txt && chmod +x /start.sh
