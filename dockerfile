@@ -40,8 +40,7 @@ ADD custom/ volume/extra_model_paths.yaml ./
 RUN pip3 install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
 
 ### Install ComfyUI dependencies
-RUN pip3 install --no-cache-dir xformers==0.0.21 \
-    && pip3 install -r requirements.txt 
+RUN pip3 install -r requirements.txt 
 
 ### install each of the custom models/nodes etc within custom-files.json
 RUN python3 custom-file-installer.py 
