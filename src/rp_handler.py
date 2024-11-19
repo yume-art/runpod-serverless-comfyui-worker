@@ -62,10 +62,10 @@ def handler(job):
 
     # outputs is equal to the completed comfyui job id history object
     outputs = comftroller.run(workflow, input_files, update_progress)
-    if LOG_JOB_OUTPUTS:
-        utils.log("---- RAW OUTPUTS ----")
-        utils.log(outputs)
-        utils.log("")
+    # if LOG_JOB_OUTPUTS:
+    #     utils.log("---- RAW OUTPUTS ----")
+    #     utils.log(outputs)
+    #     utils.log("")
 
     # if 'run' had an error, then stop job and return error as result
     if outputs.get('error'):
@@ -78,18 +78,16 @@ def handler(job):
     # uglry nesterd lewpz: el boo!
     for node_id, node_output in outputs.items():
         # add output data to output_datas if not images or gifs data
-        if not any(key in node_output for key in ["images", "gifs"]):
-            output_datas[node_id] = outputs[node_id]
         # scan job outputs for images/gifs (videos)
-        for key in ["images","gifs"]:
-            if key in node_output:
-                for data in node_output[key]:
-                    if data.get("type") == 'output':
-                        if(data['subfolder'] == ''):
-                            path = f"{data['filename']}"
-                        else:    
-                            path = f"{data['subfolder']}/{data['filename']}"
-                        output_files.append(path)
+        if "images" in node_output:
+            for data in node_output["images"]:
+                output_datas[node_id] = node_output
+                if data.get("type") == 'output':
+                    if(data['subfolder'] == ''):
+                        path = f"{data['filename']}"
+                    else:    
+                        path = f"{data['subfolder']}/{data['filename']}"
+                    output_files.append(path)
 
     # if you dont know what this does... you shouldnt be here.
     utils.log(f"#files generated: {len(output_files)}")
