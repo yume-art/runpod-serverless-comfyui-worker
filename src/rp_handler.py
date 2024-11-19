@@ -107,7 +107,7 @@ def handler(job):
     base = comftroller.GENERATION_OUTPUT_PATH
     # attempt to upload the generated files to aws, 
     # send_to_aws returns (True, [file urls, ...]) or (False, [file paths, ...])
-    aws_uploaded, bucket_urls = uploader.send_to_aws(base, output_files, 'generations', bucket_creds)
+    aws_uploaded, bucket_urls = uploader.send_to_aws(base, output_files, 'outputs', bucket_creds)
 
     # define return object 
     job_result = {}

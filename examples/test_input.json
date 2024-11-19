@@ -78,7 +78,7 @@
       },
       "7": {
         "inputs": {
-          "filename_prefix": "yume-test",
+          "filename_prefix": "test/img",
           "images": ["4", 0]
         },
         "class_type": "SaveImage",
