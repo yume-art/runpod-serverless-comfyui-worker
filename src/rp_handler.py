@@ -18,6 +18,8 @@ import utils
 LOG_JOB_OUTPUTS = True
 env = os.environ.get('ENV', 'production')
 
+utils.log(f"ENV: {env}")
+
 def handler(job):
     """
     The main function that handles a job of generating an image.
