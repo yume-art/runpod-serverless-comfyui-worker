@@ -37,6 +37,8 @@ WORKDIR /comfyui
 ### Add /custom folder - this includes the installer script and any manually added custom nodes/models
 ADD custom/ volume/extra_model_paths.yaml ./
 
+RUN pip3 install --upgrade pip
+
 RUN pip3 install torch==2.4.1 torchvision==0.19.1 torchaudio==2.4.1 --index-url https://download.pytorch.org/whl/cu124
 
 ### Install ComfyUI dependencies

@@ -88,7 +88,7 @@ def check_server(url=None, retries=99, delay=1000):
                 utils.log(f"API: reachable!")
                 return True
         except requests.RequestException as e:
-            utils.log(f"API: unreachable.. retrying in {delay}ms")
+            # utils.log(f"API: unreachable.. retrying in {delay}ms")
             # If an exception occurs, the server may not be ready
             pass
 
