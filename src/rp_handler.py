@@ -16,6 +16,7 @@ import utils
 
 # additional outputs logging. helpful for testing 
 LOG_JOB_OUTPUTS = True
+env = os.environ.get('ENV', 'production')
 
 def handler(job):
     """
@@ -54,9 +55,14 @@ def handler(job):
         bucket_creds = custom_aws # set bucket creds for uploader
         custom_aws = None # no need to store any longer
 
+    # get ENV variable for aws creds if not set in job input
+
     # set callback for when comftroller processes incomming data
-    update_progress = lambda data: runpod.serverless.progress_update(job, data)
-    # update_progress = utils.log
+
+    if(env == 'production'):
+        update_progress = lambda data: runpod.serverless.progress_update(job, data)
+    else:
+        update_progress = utils.log
 
     input_files = job_input.get("files", [])
 
