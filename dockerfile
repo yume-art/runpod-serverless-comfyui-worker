@@ -58,7 +58,7 @@ RUN for dir in /comfyui/custom_nodes/*/; do \
     fi; \
     done
 
-RUN pip3 install huggingface-hub==0.25.2
+RUN pip3 install huggingface-hub==0.25.2 onnxruntime
 
 ### Go back to the root
 WORKDIR /
