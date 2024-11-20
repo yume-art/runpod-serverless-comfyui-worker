@@ -6,5 +6,5 @@ version: "3.8"
 services:
   comfyui_common:
     build: ./
-    image: yumeart/comfy-sdxl:v1.0.0
+    image: yumeart/comfy-sdxl:v1.1.0
     container_name: yumeart-comfyui-worker
