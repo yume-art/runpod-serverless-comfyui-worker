@@ -35,7 +35,11 @@ WORKDIR /comfyui
 # RUN git checkout 723847f6b3d5da21e5d712bc0139fb7197ba60a4
 
 ### Add /custom folder - this includes the installer script and any manually added custom nodes/models
-ADD custom/ volume/extra_model_paths.yaml ./
+ADD custom/models ./models
+ADD custom/custom_nodes ./custom_nodes
+ADD custom/custom-files.json ./
+ADD custom/custom-file-installer.py ./
+ADD volume/extra_model_paths.yaml ./
 
 RUN pip3 install --upgrade pip
 
