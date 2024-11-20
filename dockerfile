@@ -39,7 +39,7 @@ ADD custom/models/ ./models
 ADD custom/custom_nodes/ ./custom_nodes
 ADD custom/custom-files.json ./
 ADD custom/custom-file-installer.py ./
-ADD volume/extra_model_paths.yaml ./
+# ADD volume/extra_model_paths.yaml ./
 
 RUN pip3 install --upgrade pip
 
